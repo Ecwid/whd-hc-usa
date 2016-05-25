@@ -73,7 +73,7 @@ export default class Products extends Component {
         />
         <View style={styles.rightContainer}>
           <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.price}>{product.price}</Text>
+          <Text style={styles.price}>{'Price: $' + product.price}</Text>
         </View>
       </View>
     );
