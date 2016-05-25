@@ -7,12 +7,52 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Image,
+  ListView,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight,
+  AlertIOS
 } from 'react-native';
 
 class WHDhackathon extends Component {
+  _onPressButtonGetProducts() {
+      var store_id = 9415600;
+
+      fetch("https://app.ecwid.com/api/v3/" + store_id + "/products?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf", {method: "GET"})
+      .then((response) => response.json())
+      .then((responseData) => {
+          var products = responseData.items
+
+          var names = []
+
+          for(i = 0; i < 10; i++) {
+           names.push(products[i].name);
+          }
+
+        AlertIOS.alert('Names',
+         names.join("\n"));
+      })
+      .done();
+
+  }
+
+
+  _onPressButtonGetProductDetails() {
+      var store_id = 9415600;
+
+      fetch("https://app.ecwid.com/api/v3/" + store_id + "/products/66458131?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf", {method: "GET"})
+      .then((response) => response.json())
+      .then((responseData) => {
+          AlertIOS.alert(
+              "GET Response",
+              "Query -> " + responseData.price
+          )
+      })
+      .done();
+  }
+
   render() {
       
     return (
@@ -27,6 +67,16 @@ class WHDhackathon extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+
+         <TouchableHighlight onPress={this._onPressButtonGetProducts} style={styles.button}>
+            <Text>Get store items</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this._onPressButtonGetProductDetails} style={styles.button}>
+            <Text>Get product details</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this._onPressButtonCreateProduct} style={styles.button}>
+            <Text>Update store item</Text>
+        </TouchableHighlight>
       </View>
     );
   }
