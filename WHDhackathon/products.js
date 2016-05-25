@@ -80,6 +80,10 @@ export default class Products extends Component {
 }
 
 const styles = StyleSheet.create({
+  thumbnail: {
+    width: 80,
+    height: 80,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
