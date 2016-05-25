@@ -1,7 +1,6 @@
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
- * @flow
  */
 
 import React, { Component } from 'react';
@@ -12,16 +11,18 @@ import {
   View
 } from 'react-native';
 
-class WHDhackaton extends Component {
+class WHDhackathon extends Component {
   render() {
-      
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to WHD Hackaton app!
+          Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          Get the party started.
+          To get started, edit index.android.js
+        </Text>
+        <Text style={styles.instructions}>
+          Shake or press menu button for dev menu
         </Text>
       </View>
     );
@@ -47,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('WHDhackaton', () => WHDhackaton);
+AppRegistry.registerComponent('WHDhackathon', () => WHDhackathon);
