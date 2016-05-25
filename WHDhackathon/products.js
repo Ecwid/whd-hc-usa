@@ -10,6 +10,9 @@ import {
   AlertIOS
 } from 'react-native';
 
+import Product from './product';
+
+
 export default class Products extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +20,7 @@ export default class Products extends Component {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
+      store_id: 9415600,
       loaded: false,
     };
   }
@@ -26,9 +30,7 @@ export default class Products extends Component {
   }
 
   fetchData() {
-    var store_id = 9415600;
-
-    fetch("https://app.ecwid.com/api/v3/" + store_id + "/products?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf", {method: "GET"})
+    fetch("https://app.ecwid.com/api/v3/" + this.state.store_id + "/products?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf", {method: "GET"})
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
@@ -39,7 +41,8 @@ export default class Products extends Component {
       .done();
   }
 
-   render() {
+
+  render() {
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
@@ -47,7 +50,7 @@ export default class Products extends Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderProduct}
+        renderRow={(product)=> <ProductRow product={product} />}
         style={styles.listView}
       />
     );
@@ -62,22 +65,40 @@ export default class Products extends Component {
       </View>
     );
   }
+}
 
-  renderProduct(product) {
+class ProductRow extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  _showProduct() {
+    // TODO: Make this navigate properly
+    return <Product id={this.props.product.id} />;
+
+  }
+
+  render() {
+
+    let {product} = this.props
     return (
-      <View style={styles.container}>
-        <Image
-          source={{uri: product.thumbnailUrl}}
-          style={styles.thumbnail}
-          resizeMode='contain'
-        />
-        <View style={styles.rightContainer}>
-          <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.price}>{'Price: $' + product.price}</Text>
+      <TouchableHighlight onPress={this._showProduct.bind(this)} id={product.id}>
+
+        <View style={styles.container}>
+          <Image
+            source={{uri: product.thumbnailUrl}}
+            style={styles.thumbnail}
+            resizeMode='contain'
+          />
+          <View style={styles.rightContainer}>
+            <Text style={styles.name}>{product.name}</Text>
+            <Text style={styles.price}>{'Price: $' + product.price}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     );
   }
+
 }
 
 const styles = StyleSheet.create({
