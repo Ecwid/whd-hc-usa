@@ -69,6 +69,7 @@ export default class Products extends Component {
         <Image
           source={{uri: product.thumbnailUrl}}
           style={styles.thumbnail}
+          resizeMode='contain'
         />
         <View style={styles.rightContainer}>
           <Text style={styles.name}>{product.name}</Text>
