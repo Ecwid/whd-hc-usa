@@ -162,7 +162,7 @@
           <NavbarButtonRight
           image={require('./ReactApp/images/icons/plus_button.png')} 
           onPress={()=>this.refs.rootNavigator.push({
-            title: 'Input',
+            title: 'New Product',
             component: ProductDetail,
             index:10,
             navigator: this.refs.rootNavigator,
@@ -170,7 +170,7 @@
         );
       }
 
-      if (route.index === 10){
+      if (route.title === "New Product" || route.index === 10){
         var rightButton = (
           <NavbarButtonRight
           image={require('./ReactApp/images/icons/plus_button.png')} 

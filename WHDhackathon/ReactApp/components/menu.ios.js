@@ -24,8 +24,8 @@
 
   // Screens / Pages
   import Products from '../screens/products.ios';
-  import TabBar from '../screens/tabbar.ios';
-  import FormExample from '../modules/example/screens/forms.ios';
+  // import TabBar from '../screens/tabbar.ios';
+  import NewProduct from '../screens/product.detail.ios';
 
 /* ==============================
   Menu Component
@@ -48,8 +48,8 @@ var Menu = React.createClass({
     // ['**TITLE**', '**MODULE_NAME**']
     var links = [
       ['Products', Products ],
-      ['Tab Bar', TabBar],
-      ['Forms', FormExample]
+      // ['Tab Bar', TabBar],
+      ['New Product', NewProduct]
     ];
 
     // Build the actual Menu Items
