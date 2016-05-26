@@ -22,6 +22,7 @@ class ImageGallery extends Component {
   getSelectedImages(images) {
     //get image
     //pass it back and pop navigation
+    // this.props.pictureCallback(images[0]);
     this.props.navigator.pop();
   }
 

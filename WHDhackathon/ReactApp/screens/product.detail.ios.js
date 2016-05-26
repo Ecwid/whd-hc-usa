@@ -207,6 +207,10 @@
     /**
       * RENDER
       */
+    _pictureUpdate: function(image){
+      this.setState({thumbnailUrl: image})
+    },
+
     render: function() {
       var Form = FormValidation.form.Form;
       var sourceImg=require('../images/no-product.png');
@@ -244,10 +248,12 @@
                   title: 'ImageGallery',
                   component: ImageGallery,
                   index:100,
+                  pictureCallback: this._pictureUpdate
                 })} 
                 source={sourceImg}
                 style={[styles.productImage]}>
-                navigator={this.props.navigator} 
+                navigator={this.props.navigator}
+
               </PicturePress>
               
               
