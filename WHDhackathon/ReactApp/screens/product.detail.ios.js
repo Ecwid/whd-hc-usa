@@ -122,10 +122,31 @@
       */
     _deleteData: function(callback) {
       var self = this;
+      var store_id = 9415600;
+
 
       // Erase the DB
       AppDB.settings.erase_db(function(removed_data){
         self.setState({form_values: self.state.empty_form_values});
+
+         URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" + self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
+
+    fetch(URL, 
+          { method: "DELETE", 
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+          })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(responseData.deleteCount > 0) {
+          alert("Product deleted successfully");
+        } else {
+          alert("Error deleting product");
+        }
+      })
+      .done();
         return callback();
       });
     },
@@ -227,7 +248,7 @@
               <Button
                 text={'Delete'}
                 style={'outlined'}
-                onPress={()=>alert('Just for looks')} />
+                onPress={()=>_deleteData()} />
             </View>
           </ScrollView>
         ); } else{
@@ -278,7 +299,7 @@
               <Button
                 text={'Delete'}
                 style={'outlined'}
-                onPress={()=>alert('Just for looks')} />
+                onPress={()=>this._deleteData()} />
             </View>
           </ScrollView>)
 
