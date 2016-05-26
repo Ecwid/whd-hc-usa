@@ -22,6 +22,9 @@ export default class Product extends Component {
 
   componentDidMount() {
     this.fetchData();
+    
+    // NOTE: Uncomment to test out submission
+    //this.submitData();
   }
 
   fetchData() {
@@ -32,6 +35,29 @@ export default class Product extends Component {
           product: responseData,
           loaded: true
         });
+      })
+      .done();
+  }
+
+  submitData() {
+    URL = "https://app.ecwid.com/api/v3/" + this.state.store_id + "/products/" + this.state.product_id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
+
+    fetch(URL, 
+          { method: "PUT", 
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            // TODO: pass in actual data once the form gathers it
+            body: JSON.stringify({"name": "new name", "price": 4}), 
+          })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(responseData.updateCount > 0) {
+          alert("Product updated successfully");
+        } else {
+          alert("Error updating product");
+        }
       })
       .done();
   }
