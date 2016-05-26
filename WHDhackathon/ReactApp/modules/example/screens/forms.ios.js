@@ -136,6 +136,29 @@
       if(value) {
         self.setState({form_values: value}, function(){
           self._saveData(function(result){
+            // this.setState({product_id: 66555005, store_id: 9415600});
+             URL = "https://app.ecwid.com/api/v3/" + 9415600 + "/products/" + 66555005 + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
+
+            fetch(URL, 
+                  { method: "PUT", 
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                    // TODO: pass in actual data once the form gathers it
+                    body: JSON.stringify({"name": value.Name, "price": value.Price}), 
+                  })
+              .then((response) => response.json())
+              .then((responseData) => {
+                if(responseData.updateCount > 0) {
+                  alert("Product updated successfully");
+                } else {
+                  alert("Error updating product");
+                }
+              })
+              .done();
+
+
             // Show save message
             self.setState({show_save_msg: true});
           });
