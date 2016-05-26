@@ -10,7 +10,9 @@ import {
   AlertIOS
 } from 'react-native';
 
-import Product from './product';
+import EditProduct from './edit-product';
+import NewProduct from './new-product';
+
 
 
 export default class Products extends Component {
@@ -23,6 +25,12 @@ export default class Products extends Component {
       store_id: 9415600,
       loaded: false,
     };
+  }
+
+  _newProduct() {
+    // TODO: Make this navigate properly; hook up to a plus button
+    return <NewProduct />;
+
   }
 
   componentDidMount() {
@@ -74,7 +82,7 @@ class ProductRow extends Component {
 
   _showProduct() {
     // TODO: Make this navigate properly
-    return <Product id={this.props.product.id} />;
+    return <EditProduct id={this.props.product.id} />;
 
   }
 

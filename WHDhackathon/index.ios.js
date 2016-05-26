@@ -16,14 +16,16 @@ import {
   AlertIOS
 } from 'react-native';
 import Products from './products';
-import Product from './product';
+import EditProduct from './edit-product';
+import NewProduct from './new-product';
 
 class WHDhackathon extends Component {
  
    render() {
     return <Products />;
      // TEMPORARY CODE: for rendering individual product page before nav is ready
-    // return <Product id='66540990' />;
+    // return <EditProduct id='66540990' />;
+    //return <NewProduct />;
    }
 
 }

@@ -10,7 +10,7 @@ import {
   AlertIOS
 } from 'react-native';
 
-export default class Product extends Component {
+export default class EditProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
