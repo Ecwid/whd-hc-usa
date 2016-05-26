@@ -51,19 +51,21 @@
             style={[styles.productRow, self.props.thumbnailUrl ? styles.imageBackground : null]} 
             onPress={self._onPress} activeOpacity={0.7}>
             
+            
             <Image source={{uri: self.props.thumbnailUrl}} style={[styles.productImage]}></Image>
+            
             <View style={styles.rightContainer}>
               <Text style={[AppStyles.baseText, styles.productTitle]}>{self.props.name.toUpperCase()}</Text>
-              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{self.props.price}</Text>
+              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{"$" + self.props.price.toFixed(2)}</Text>
             </View>
           </TouchableOpacity>
         )
       } else {
         return (
-          <TouchableOpacity style={[styles.productRow]} onPress={self.onPress} activeOpacity={0.7}>
+          <TouchableOpacity style={[styles.productRow]} onPress={self._onPress} activeOpacity={0.7}>
             <View style={styles.rightContainer}>
               <Text style={[AppStyles.baseText, styles.productTitle]}>{self.props.name.toUpperCase()}</Text>
-              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{self.props.price}</Text>
+              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{"$" + self.props.price.toFixed(2)}</Text>
             </View>
           </TouchableOpacity>
         )
