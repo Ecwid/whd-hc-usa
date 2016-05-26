@@ -13,8 +13,13 @@ import {
   Text,
   View,
   TouchableHighlight,
-  AlertIOS
+  AlertIOS,
+    CameraRoll,
+    NativeModules
 } from 'react-native';
+
+
+const {AssetsLibrary} = NativeModules;
 import Products from './products';
 import EditProduct from './edit-product';
 import NewProduct from './new-product';
@@ -22,6 +27,13 @@ import NewProduct from './new-product';
 class WHDhackathon extends Component {
  
    render() {
+       CameraRoll.getPhotos({first:25}).then(
+           (data) => {
+               AssetsLibrary.convertBase64(data.edges[0].node.image.uri, (data) => {
+                   console.info(data)
+               })
+           }, (e) => {}
+       );
     return <Products />;
      // TEMPORARY CODE: for rendering individual product page before nav is ready
     // return <EditProduct id='66540990' />;
