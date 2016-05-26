@@ -115,15 +115,7 @@
       * Executes after all modules have been loaded
       */
     componentDidMount: function() {
-      var self = this;
 
-      // Get setting from local DB to populate fields
-      AppDB.settings.get_all(function(result){
-        if(result.totalrows > 0) {
-          var firstIndex = AppUtil.firstIndexInObj(result.rows);
-          self.setState({form_values: result.rows[firstIndex].values});
-        }
-      });
     },
 
     /**
@@ -152,35 +144,28 @@
     /**
       * Delete Data
       */
-    _deleteData: function(callback) {
+    _deleteData: function() {
       var self = this;
       var store_id = 9415600;
 
+       var URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" + self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
 
-      // Erase the DB
-      AppDB.settings.erase_db(function(removed_data){
-        self.setState({form_values: self.state.empty_form_values});
-
-         URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" + self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
-
-    fetch(URL, 
-          { method: "DELETE", 
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-          })
-      .then((response) => response.json())
-      .then((responseData) => {
-        if(responseData.deleteCount > 0) {
-          alert("Product deleted successfully");
-        } else {
-          alert("Error deleting product");
-        }
-      })
-      .done();
-        return callback();
-      });
+      fetch(URL, 
+            { method: "DELETE", 
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+            })
+        .then((response) => response.json())
+        .then((responseData) => {
+          if(responseData.deleteCount > 0) {
+            alert("Product deleted successfully");
+          } else {
+            alert("Error deleting product");
+          }
+        })
+        .done();
     },
 
     /**
@@ -192,37 +177,28 @@
       // Get new values and update
       var value = self.refs.form.getValue();
 
-      // Form is valid
-      if(value) {
-        self.setState({form_values: value}, function(){
-          self._saveData(function(result){
-            var store_id = 9415600;
+      if(!value) return;
+      var store_id = 9415600;
 
-             URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" +  self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
-
-            fetch(URL, 
-                  { method: "PUT", 
-                    headers: {
-                      'Accept': 'application/json',
-                      'Content-Type': 'application/json',
-                    },
-                    // TODO: pass in actual data once the form gathers it
-                    body: JSON.stringify({"name": value.Name, "price": value.Price}), 
-                  })
-              .then((response) => response.json())
-              .then((responseData) => {
-                if(responseData.updateCount > 0) {
-                  alert("Product updated successfully");
-                } else {
-                  alert("Error updating product");
-                }
-              })
-              .done();
-            // Show save message
-            self.setState({show_save_msg: true});
-          });
-        });
-      }
+      var URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" +  self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf";
+      fetch(URL, 
+            { method: "PUT", 
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              // TODO: pass in actual data once the form gathers it
+              body: JSON.stringify({"name": value.Name, "price": value.Price}), 
+            })
+        .then((response) => response.json())
+        .then((responseData) => {
+          if(responseData.updateCount > 0) {
+            alert("Product updated successfully");
+          } else {
+            alert("Error updating product");
+          }
+        })
+        .done();
     },
 
     /**
@@ -230,33 +206,38 @@
       */
     render: function() {
       var Form = FormValidation.form.Form;
+<<<<<<< HEAD
       var sourceImg=require('../images/no-product.png');
       if(this.state.thumbnailUrl) {
         sourceImg = {uri: this.state.thumbnailUrl}
       }
 
+=======
+      
+>>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
         return (
           <ScrollView automaticallyAdjustContentInsets={false} 
             style={[AppStyles.container]}
             contentContainerStyle={[AppStyles.containerCentered, styles.container]}>
             <View style={[AppStyles.paddingHorizontal]}>
 
-              {this.state.show_save_msg && this.state.form_values.First_name != '' ?
+              {this.state.show_save_msg && this.state.form_values.Name != '' ?
                 <View>
                   <View style={[AppStyles.msg]}>
                     <Text style={[AppStyles.baseText, AppStyles.msg_text]}>Saved</Text>
                   </View>
 
-                  <View style={AppStyles.spacer_20} />
+                  <View style={AppStyles.spacer_10} />
                 </View>
               : null}
 
               <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-                {this.state.form_values.name == '' ? "New Product" : "Update Product"}
+                {this.state.id==0 ? "New Product" : "Update Product"}
               </Text>
               
-              <View style={AppStyles.spacer_20} />
+              <View style={AppStyles.spacer_10} />
 
+<<<<<<< HEAD
               <PicturePress onPress={()=>this.props.navigator.push({
                   title: 'ImageGallery',
                   component: ImageGallery,
@@ -267,7 +248,23 @@
                 style={[styles.productImage]}>
                 navigator={this.props.navigator} 
               </PicturePress>
+=======
+>>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
 
+
+<<<<<<< HEAD
+=======
+
+                {this.state.thumbnailUrl == null || this.state.thumbnailUrl == ''?
+                
+              <Image source={require('../images/no-product.png')} style={[styles.productImage]}></Image>
+
+                : 
+                <Image source={{uri: this.state.thumbnailUrl}} style={[styles.productImage]}></Image>
+                }
+              
+              
+              
               <Form
                 ref="form"
                 type={this.state.form_fields}
@@ -275,6 +272,7 @@
                 options={this.state.options} />
             </View>
 
+>>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
             <View style={[AppStyles.grid_row]}>
 
               <View style={[AppStyles.grid_third]}>
@@ -290,11 +288,19 @@
               <Button
                 text={'Delete'}
                 style={'outlined'}
+<<<<<<< HEAD
                 onPress={()=>_deleteData()} />
             </View>
           </ScrollView>
         ) 
 
+=======
+                onPress={this._deleteData} />
+            </View>
+          </ScrollView>
+        ); 
+        
+>>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
     },
 
   });
