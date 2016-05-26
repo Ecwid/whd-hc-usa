@@ -67,7 +67,7 @@
         },
         form_values: {
           Name: this.props.name,
-          Price: this.props.price,          
+          Price: this.props.price.toFixed(2),          
           
         },
         options: {
