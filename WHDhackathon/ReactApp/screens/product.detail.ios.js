@@ -38,9 +38,41 @@
   // Components
   import Button from '../components/button.ios';
 
+  import ImageGallery from './ImageGallery';
+
+
+
+  //Touchable picture
+  var PicturePress = React.createClass({
+    /**
+      * On Icon Press
+      */
+    _onPress: function() { 
+      if(this.props.onPress) this.props.onPress(); 
+      // this.props.navigator.push({
+      //       title: 'ImageGallery',
+      //       component: ImageGallery,
+      //       index:100,
+      //       navigator: this.refs.rootNavigator,
+      //     })
+    },
+
+    render: function() {
+      return (
+        <TouchableOpacity onPress={this._onPress} activeOpacity={0.6}>
+          <Image
+            source={this.props.source}
+            style={this.props.style}
+          />
+        </TouchableOpacity>
+      );
+    }
+  });
+
 /* ==============================
   Form
   =============================== */
+
   var Form = React.createClass({
     /**
       * Sets initial state
@@ -198,9 +230,10 @@
       */
     render: function() {
       var Form = FormValidation.form.Form;
-
+      var sourceImg=require('../images/no-product.png');
       if(this.state.thumbnailUrl) {
-
+        sourceImg = {uri: this.state.thumbnailUrl}
+      }
 
         return (
           <ScrollView automaticallyAdjustContentInsets={false} 
@@ -224,7 +257,16 @@
               
               <View style={AppStyles.spacer_20} />
 
-              <Image source={{uri: this.state.thumbnailUrl}} style={[styles.productImage]}></Image>
+              <PicturePress onPress={()=>this.props.navigator.push({
+                  title: 'ImageGallery',
+                  component: ImageGallery,
+                  index:100,
+                  navigator: this.refs.rootNavigator,
+                })} 
+                source={sourceImg}
+                style={[styles.productImage]}>
+                navigator={this.props.navigator} 
+              </PicturePress>
 
               <Form
                 ref="form"
@@ -251,59 +293,8 @@
                 onPress={()=>_deleteData()} />
             </View>
           </ScrollView>
-        ); } else{
-        
-        return (
-          <ScrollView automaticallyAdjustContentInsets={false} 
-            style={[AppStyles.container]}
-            contentContainerStyle={[AppStyles.containerCentered, styles.container]}>
-            <View style={[AppStyles.paddingHorizontal]}>
+        ) 
 
-              {this.state.show_save_msg && this.state.form_values.First_name != '' ?
-                <View>
-                  <View style={[AppStyles.msg]}>
-                    <Text style={[AppStyles.baseText, AppStyles.msg_text]}>Saved</Text>
-                  </View>
-
-                  <View style={AppStyles.spacer_20} />
-                </View>
-              : null}
-
-              <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-                {this.state.form_values.name == '' ? "New Product" : "Update Product"}
-              </Text>
-              
-              <View style={AppStyles.spacer_20} />
-
-              <Image source={require('../images/no-product.png')} style={[styles.productImage]}></Image>
-
-              <Form
-                ref="form"
-                type={this.state.form_fields}
-                value={this.state.form_values}
-                options={this.state.options} />
-            </View>
-
-            <View style={[AppStyles.grid_row]}>
-
-              <View style={[AppStyles.grid_third]}>
-                <Button
-                  text={"Save"}
-                  onPress={this._save} />
-              </View>
-            </View>
-
-            <View style={AppStyles.hr} />
-
-            <View style={[AppStyles.paddingHorizontal]}>
-              <Button
-                text={'Delete'}
-                style={'outlined'}
-                onPress={()=>this._deleteData()} />
-            </View>
-          </ScrollView>)
-
-        }
     },
 
   });

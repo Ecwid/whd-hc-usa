@@ -47,6 +47,24 @@
     },
   ];
 
+
+  var PicturePress = React.createClass({
+    /**
+      * On Icon Press
+      */
+    _onPress: function() { if(this.props.onPress) this.props.onPress(); },
+
+    render: function() {
+      return (
+        <TouchableOpacity onPress={this._onPress} activeOpacity={0.6}>
+          <Image
+            source={this.props.image}
+            style={AppStyles.navbarButtonRight} />
+        </TouchableOpacity>
+      );
+    }
+  });
+
   var ProductsView = React.createClass({
 
   	/**

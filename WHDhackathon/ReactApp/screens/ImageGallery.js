@@ -18,6 +18,12 @@ class ImageGallery extends Component {
       num : 0,
     }
   }
+  getSelectedImages(images) {
+    //get image
+    //pass it back and pop navigation
+    this.props.navigator.pop
+  }
+
 
   render() {
   	return (
