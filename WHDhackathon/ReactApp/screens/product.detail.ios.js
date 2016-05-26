@@ -176,19 +176,26 @@
       if(!value) return;
       var store_id = 9415600;
 
-      var URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" +  self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf";
+
+      if(!self.state.id) {
+        var URL = "https://app.ecwid.com/api/v3/" + store_id + "/products" + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf";
+        var http_method = 'POST'     
+      } else {
+        var URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" +  self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf";
+        var http_method = 'PUT'
+      }
+
       fetch(URL, 
-            { method: "PUT", 
+            { method: http_method, 
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
               },
-              // TODO: pass in actual data once the form gathers it
               body: JSON.stringify({"name": value.Name, "price": value.Price}), 
             })
         .then((response) => response.json())
         .then((responseData) => {
-          if(responseData.updateCount > 0) {
+          if(responseData.updateCount > 0 || responseData.id) {
             alert("Product updated successfully");
           } else {
             alert("Error updating product");
@@ -224,9 +231,7 @@
                 </View>
               : null}
 
-              <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-                {this.state.id==0 ? "New Product" : "Update Product"}
-              </Text>
+        
               
               <View style={AppStyles.spacer_10} />
 
