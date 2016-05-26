@@ -12,22 +12,23 @@ import {
 var CameraRollPicker = require('react-native-camera-roll-picker');
 
 class ImageGallery extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { 
       num : 0,
     }
+
   }
   getSelectedImages(images) {
     //get image
     //pass it back and pop navigation
-    this.props.navigator.pop
+    this.props.navigator.pop();
   }
 
 
   render() {
   	return (
-  		<CameraRollPicker callback={this.getSelectedImages} maximum={1}/>
+  		<CameraRollPicker callback={this.getSelectedImages.bind(this)} maximum={1}/>
   	)
   }
 }

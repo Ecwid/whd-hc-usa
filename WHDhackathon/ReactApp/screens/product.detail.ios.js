@@ -244,7 +244,6 @@
                   title: 'ImageGallery',
                   component: ImageGallery,
                   index:100,
-                  navigator: this.refs.rootNavigator,
                 })} 
                 source={sourceImg}
                 style={[styles.productImage]}>
