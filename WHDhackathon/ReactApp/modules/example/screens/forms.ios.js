@@ -56,20 +56,17 @@
         show_save_msg: false,
         form_fields: FormValidation.struct({
           Name: FormValidation.String,
-          Price: FormValidation.Number,
-          Description: FormValidation.String,
+          Price: FormValidation.Number
         }),
         empty_form_values: {
           Name: '',
           Price: '',
-          Description: '',
         },
         form_values: {},
         options: {
           fields: {
             Name: { error: 'Please enter product name' },
-            Price: { error: 'Please enter product price' },
-            Description: { error: 'Please enter a valid email' },
+            Price: { error: 'Please enter product price' }
           }
         },
       };
