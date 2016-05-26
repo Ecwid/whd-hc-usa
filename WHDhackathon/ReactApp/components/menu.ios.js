@@ -24,7 +24,7 @@
 
   // Screens / Pages
   import Products from '../screens/products.ios';
-  import Index from '../screens/tabbar.ios';
+  import TabBar from '../screens/tabbar.ios';
   import FormExample from '../modules/example/screens/forms.ios';
 
 /* ==============================
@@ -48,7 +48,7 @@ var Menu = React.createClass({
     // ['**TITLE**', '**MODULE_NAME**']
     var links = [
       ['Products', Products ],
-      ['Tab Bar', Index],
+      ['Tab Bar', TabBar],
       ['Forms', FormExample]
     ];
 

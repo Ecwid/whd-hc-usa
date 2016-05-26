@@ -21,7 +21,7 @@
   import AppConfig from '../config.ios';
 
   // Screens / Pages
-  import ComingSoon from './product.detail.ios';
+  import ComingSoon from './first.load.ios';
   import FirstLoad from './first.load.ios';
 
 /* ==============================

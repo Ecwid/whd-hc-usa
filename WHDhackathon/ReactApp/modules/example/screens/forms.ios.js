@@ -52,45 +52,24 @@
           return re.test(email);
         }
       );
-
-      // Password Validation - Must be 6 chars long
-      var valid_password = FormValidation.refinement(
-        FormValidation.String, function (password) {
-          if(password.length < 6) return false;
-          return true;
-        }
-      );
-
       return {
         show_save_msg: false,
         form_fields: FormValidation.struct({
-          First_name: FormValidation.String,
-          Last_name: FormValidation.String,
-          Email: valid_email,
-          Password: valid_password,
-          Confirm_password: valid_password,
+          Name: FormValidation.String,
+          Price: FormValidation.Number,
+          Description: FormValidation.String,
         }),
         empty_form_values: {
-          First_name: '',
-          Last_name: '',
-          Email: '',
-          Password: '',
-          Confirm_password: '',
+          Name: '',
+          Price: '',
+          Description: '',
         },
         form_values: {},
         options: {
           fields: {
-            First_name: { error: 'Please enter your first name' },
-            Last_name: { error: 'Please enter your last name' },
-            Email: { error: 'Please enter a valid email' },
-            Password: {
-              error: 'Your new password must be more than 6 characters', 
-              type: 'password',
-            },
-            Confirm_password: { 
-              error: 'Please repeat your new password',
-              type: 'password',
-            },
+            Name: { error: 'Please enter product name' },
+            Price: { error: 'Please enter product price' },
+            Description: { error: 'Please enter a valid email' },
           }
         },
       };
@@ -148,28 +127,13 @@
     },
 
     /**
-      * Sign Up
+      * Save
       */
-    _signUp: function() {
+    _save: function() {
       var self = this;
 
       // Get new values and update
       var value = self.refs.form.getValue();
-
-      // Check whether passwords match
-      if(value && value.Password != value.Confirm_password) {
-        self.setState({
-          options: FormValidation.update(self.state.options, {
-            fields: {
-              Confirm_password: {
-                hasError: {'$set': true},
-                error: {'$set': 'Passwords don\'t match'}
-              }
-            }
-          })
-        });
-        return false;
-      }
 
       // Form is valid
       if(value) {
@@ -205,11 +169,7 @@
             : null}
 
             <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-              {this.state.form_values.First_name == '' ? "Sign Up" : "Update Profile"}
-            </Text>
-
-            <Text style={[AppStyles.baseText, AppStyles.p, AppStyles.centered]}>
-              This page saves your input to the local DB. We also have form validation: required first and last name, valid email address + password validation (required, must be 6 characters or more + must match each other)
+              {this.state.form_values.name == '' ? "New Product" : "Update Product"}
             </Text>
             
             <View style={AppStyles.spacer_20} />
@@ -225,14 +185,14 @@
             <View style={[AppStyles.grid_twoThirds, AppStyles.paddingLeft]}>
               <View style={AppStyles.spacer_15} />
               <TouchableOpacity onPress={()=>{this._deleteData()}}>
-                <Text style={[AppStyles.baseText, AppStyles.p, AppStyles.link]}>Clear My Info</Text>
+                <Text style={[AppStyles.baseText, AppStyles.p, AppStyles.link]}>Clear Info</Text>
               </TouchableOpacity>
             </View>
 
             <View style={[AppStyles.grid_third, AppStyles.paddingRight]}>
               <Button
                 text={"Save"}
-                onPress={this._signUp} />
+                onPress={this._save} />
             </View>
           </View>
 
@@ -240,15 +200,10 @@
 
           <View style={[AppStyles.paddingHorizontal]}>
             <Button
-              text={'Sign In'}
-              onPress={()=>alert('Just for looks')} />
-
-            <Button
-              text={'Guest Checkout'}
+              text={'Delete'}
               style={'outlined'}
               onPress={()=>alert('Just for looks')} />
           </View>
-
         </ScrollView>
       );
     },
