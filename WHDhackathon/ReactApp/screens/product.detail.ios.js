@@ -144,7 +144,7 @@
           self._saveData(function(result){
 
              URL = "https://app.ecwid.com/api/v3/" + 9415600 + "/products/" + 66555005 + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
-             alert(URL);
+
             fetch(URL, 
                   { method: "PUT", 
                     headers: {
