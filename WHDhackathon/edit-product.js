@@ -23,8 +23,10 @@ export default class EditProduct extends Component {
   componentDidMount() {
     this.fetchData();
     
-    // NOTE: Uncomment to test out submission
+    // NOTE: Uncomment to test out submission or deletion
     //this.submitData();
+    //this.deleteProduct();
+
   }
 
   fetchData() {
@@ -61,6 +63,28 @@ export default class EditProduct extends Component {
       })
       .done();
   }
+
+  deleteProduct() {
+    URL = "https://app.ecwid.com/api/v3/" + this.state.store_id + "/products/" + this.state.product_id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
+
+    fetch(URL, 
+          { method: "DELETE", 
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+          })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(responseData.deleteCount > 0) {
+          alert("Product deleted successfully");
+        } else {
+          alert("Error deleting product");
+        }
+      })
+      .done();
+  }
+
 
    renderLoadingView() {
     return (
