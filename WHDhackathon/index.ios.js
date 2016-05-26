@@ -34,6 +34,7 @@
   import Products from './ReactApp/screens/products.ios';
 
   import ProductDetail from './ReactApp/screens/product.detail.ios';
+  import ImageGallery from './ReactApp/screens/ImageGallery';
 
 /* ==============================
   Main Navigator with Sidemenu
@@ -167,7 +168,20 @@
             navigator: this.refs.rootNavigator,
           })} />
         );
-      }      
+      }
+
+      if (route.index === 10){
+        var rightButton = (
+          <NavbarButtonRight
+          image={require('./ReactApp/images/icons/plus_button.png')} 
+          onPress={()=>this.refs.rootNavigator.push({
+            title: 'ImageGallery',
+            component: ImageGallery,
+            index:100,
+            navigator: this.refs.rootNavigator,
+          })} />
+        );
+      }       
       
 
       if (route.index > 0) {
