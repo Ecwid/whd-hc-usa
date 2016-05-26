@@ -154,12 +154,14 @@
           onPress={()=>self.setState({menuIsOpen:true})} />
       );
 
-      var rightButton = (
-        <NavbarButtonRight
+      if (route.index === 0){
+        var rightButton = (
+          <NavbarButtonRight
           image={require('./ReactApp/images/icons/plus_button.png')} 
           onPress={()=>self.setState({menuIsOpen:true})} />
-      );
-
+        );
+      }      
+      
 
       if (route.index > 0) {
         leftButton = (
@@ -167,6 +169,7 @@
             image={require('./ReactApp/images/icons/back_button.png')} 
             onPress={self.refs.rootNavigator.pop} />
         );
+
       }
 
 
