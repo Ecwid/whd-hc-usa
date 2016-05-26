@@ -44,19 +44,19 @@
       */
     render: function(){
       var self = this;
-
-      if(self.props.thumbnailUrl) {
+      var product = self.props.product;
+      if(product.thumbnailUrl) {
         return (
           <TouchableOpacity 
-            style={[styles.productRow, self.props.thumbnailUrl ? styles.imageBackground : null]} 
+            style={[styles.productRow, product.thumbnailUrl ? styles.imageBackground : null]} 
             onPress={self._onPress} activeOpacity={0.7}>
             
             
-            <Image source={{uri: self.props.thumbnailUrl}} style={[styles.productImage]}></Image>
+            <Image source={{uri: product.thumbnailUrl}} style={[styles.productImage]}></Image>
             
             <View style={styles.rightContainer}>
-              <Text style={[AppStyles.baseText, styles.productTitle]}>{self.props.name.toUpperCase()}</Text>
-              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{"$" + self.props.price.toFixed(2)}</Text>
+              <Text style={[AppStyles.baseText, styles.productTitle]}>{product.name.toUpperCase()}</Text>
+              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{"$" + product.price.toFixed(2)}</Text>
             </View>
           </TouchableOpacity>
         )
@@ -67,8 +67,8 @@
 
 
             <View style={styles.rightContainer}>
-              <Text style={[AppStyles.baseText, styles.productTitle]}>{self.props.name.toUpperCase()}</Text>
-              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{"$" + self.props.price.toFixed(2)}</Text>
+              <Text style={[AppStyles.baseText, styles.productTitle]}>{product.name.toUpperCase()}</Text>
+              <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{"$" + product.price.toFixed(2)}</Text>
             </View>
           </TouchableOpacity>
         )

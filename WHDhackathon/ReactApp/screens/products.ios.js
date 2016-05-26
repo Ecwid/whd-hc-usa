@@ -95,15 +95,14 @@
       */
     _renderRow: function(data) {
       return (
-        <ProductRow name={data.name} price={data.price}
-          thumbnailUrl={data.thumbnailUrl} id={data.id} thumbnailUrl={data.thumbnailUrl}
+        <ProductRow product={data}
           onPress={()=>{
             this.props.navigator.push({
               title: 'Product Detail',
-              passProps: data,
               component: ProductDetail,
               index: 2,
               navigator: this.props.navigator,
+              passProps:data
             });
           }} />
       );
