@@ -33,6 +33,8 @@
   // Screens / Pages
   import Products from './ReactApp/screens/products.ios';
 
+  import ProductDetail from './ReactApp/screens/product.detail.ios';
+
 /* ==============================
   Main Navigator with Sidemenu
   =============================== */
@@ -144,7 +146,7 @@
       var Component = route.component;
       
       // Default Navbar Title
-      var title = 'Ecwid Store Admin';
+      var title = 'Products';
       if(route.title) title = route.title;
 
       // Determine which Icon component - hamburger or back?
@@ -154,11 +156,16 @@
           onPress={()=>self.setState({menuIsOpen:true})} />
       );
 
-      if (route.index === 0){
+      if (route.title === "Products" || route.index === 0){
         var rightButton = (
           <NavbarButtonRight
           image={require('./ReactApp/images/icons/plus_button.png')} 
-          onPress={()=>self.setState({menuIsOpen:true})} />
+          onPress={()=>this.refs.rootNavigator.push({
+            title: 'Input',
+            component: ProductDetail,
+            index:10,
+            navigator: this.refs.rootNavigator,
+          })} />
         );
       }      
       
