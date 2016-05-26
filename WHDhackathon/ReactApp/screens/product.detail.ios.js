@@ -1,4 +1,3 @@
-
 /**
  * Form SCREEN
  *
@@ -40,8 +39,6 @@
 
   import ImageGallery from './ImageGallery';
 
-
-
   //Touchable picture
   var PicturePress = React.createClass({
     /**
@@ -72,7 +69,6 @@
 /* ==============================
   Form
   =============================== */
-
   var Form = React.createClass({
     /**
       * Sets initial state
@@ -206,15 +202,12 @@
       */
     render: function() {
       var Form = FormValidation.form.Form;
-<<<<<<< HEAD
       var sourceImg=require('../images/no-product.png');
       if(this.state.thumbnailUrl) {
         sourceImg = {uri: this.state.thumbnailUrl}
       }
 
-=======
-      
->>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
+
         return (
           <ScrollView automaticallyAdjustContentInsets={false} 
             style={[AppStyles.container]}
@@ -237,7 +230,11 @@
               
               <View style={AppStyles.spacer_10} />
 
-<<<<<<< HEAD
+
+
+
+                
+                
               <PicturePress onPress={()=>this.props.navigator.push({
                   title: 'ImageGallery',
                   component: ImageGallery,
@@ -248,20 +245,6 @@
                 style={[styles.productImage]}>
                 navigator={this.props.navigator} 
               </PicturePress>
-=======
->>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
-
-
-<<<<<<< HEAD
-=======
-
-                {this.state.thumbnailUrl == null || this.state.thumbnailUrl == ''?
-                
-              <Image source={require('../images/no-product.png')} style={[styles.productImage]}></Image>
-
-                : 
-                <Image source={{uri: this.state.thumbnailUrl}} style={[styles.productImage]}></Image>
-                }
               
               
               
@@ -272,7 +255,6 @@
                 options={this.state.options} />
             </View>
 
->>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
             <View style={[AppStyles.grid_row]}>
 
               <View style={[AppStyles.grid_third]}>
@@ -288,19 +270,11 @@
               <Button
                 text={'Delete'}
                 style={'outlined'}
-<<<<<<< HEAD
-                onPress={()=>_deleteData()} />
-            </View>
-          </ScrollView>
-        ) 
-
-=======
                 onPress={this._deleteData} />
             </View>
           </ScrollView>
         ); 
         
->>>>>>> 056131fe205b53113e38ab591cde0b98a60d0036
     },
 
   });
