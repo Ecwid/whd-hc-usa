@@ -178,56 +178,111 @@
     render: function() {
       var Form = FormValidation.form.Form;
 
-      return (
-        <ScrollView automaticallyAdjustContentInsets={false} 
-          style={[AppStyles.container]}
-          contentContainerStyle={[AppStyles.containerCentered, styles.container]}>
-          <View style={[AppStyles.paddingHorizontal]}>
+      if(this.state.thumbnailUrl) {
 
-            {this.state.show_save_msg && this.state.form_values.First_name != '' ?
-              <View>
-                <View style={[AppStyles.msg]}>
-                  <Text style={[AppStyles.baseText, AppStyles.msg_text]}>Saved</Text>
+
+        return (
+          <ScrollView automaticallyAdjustContentInsets={false} 
+            style={[AppStyles.container]}
+            contentContainerStyle={[AppStyles.containerCentered, styles.container]}>
+            <View style={[AppStyles.paddingHorizontal]}>
+
+              {this.state.show_save_msg && this.state.form_values.First_name != '' ?
+                <View>
+                  <View style={[AppStyles.msg]}>
+                    <Text style={[AppStyles.baseText, AppStyles.msg_text]}>Saved</Text>
+                  </View>
+
+                  <View style={AppStyles.spacer_20} />
                 </View>
+              : null}
 
-                <View style={AppStyles.spacer_20} />
-              </View>
-            : null}
+              <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
+                {this.state.form_values.name == '' ? "New Product" : "Update Product"}
+              </Text>
+              
+              <View style={AppStyles.spacer_20} />
 
-            <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-              {this.state.form_values.name == '' ? "New Product" : "Update Product"}
-            </Text>
-            
-            <View style={AppStyles.spacer_20} />
+              <Image source={{uri: this.state.thumbnailUrl}} style={[styles.productImage]}></Image>
 
-            <Image source={{uri: this.state.thumbnailUrl}} style={[styles.productImage]}></Image>
-
-            <Form
-              ref="form"
-              type={this.state.form_fields}
-              value={this.state.form_values}
-              options={this.state.options} />
-          </View>
-
-          <View style={[AppStyles.grid_row]}>
-
-            <View style={[AppStyles.grid_third]}>
-              <Button
-                text={"Save"}
-                onPress={this._save} />
+              <Form
+                ref="form"
+                type={this.state.form_fields}
+                value={this.state.form_values}
+                options={this.state.options} />
             </View>
-          </View>
 
-          <View style={AppStyles.hr} />
+            <View style={[AppStyles.grid_row]}>
 
-          <View style={[AppStyles.paddingHorizontal]}>
-            <Button
-              text={'Delete'}
-              style={'outlined'}
-              onPress={()=>alert('Just for looks')} />
-          </View>
-        </ScrollView>
-      );
+              <View style={[AppStyles.grid_third]}>
+                <Button
+                  text={"Save"}
+                  onPress={this._save} />
+              </View>
+            </View>
+
+            <View style={AppStyles.hr} />
+
+            <View style={[AppStyles.paddingHorizontal]}>
+              <Button
+                text={'Delete'}
+                style={'outlined'}
+                onPress={()=>alert('Just for looks')} />
+            </View>
+          </ScrollView>
+        ); } else{
+        
+        return (
+          <ScrollView automaticallyAdjustContentInsets={false} 
+            style={[AppStyles.container]}
+            contentContainerStyle={[AppStyles.containerCentered, styles.container]}>
+            <View style={[AppStyles.paddingHorizontal]}>
+
+              {this.state.show_save_msg && this.state.form_values.First_name != '' ?
+                <View>
+                  <View style={[AppStyles.msg]}>
+                    <Text style={[AppStyles.baseText, AppStyles.msg_text]}>Saved</Text>
+                  </View>
+
+                  <View style={AppStyles.spacer_20} />
+                </View>
+              : null}
+
+              <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
+                {this.state.form_values.name == '' ? "New Product" : "Update Product"}
+              </Text>
+              
+              <View style={AppStyles.spacer_20} />
+
+              <Image source={require('../images/no-product.png')} style={[styles.productImage]}></Image>
+
+              <Form
+                ref="form"
+                type={this.state.form_fields}
+                value={this.state.form_values}
+                options={this.state.options} />
+            </View>
+
+            <View style={[AppStyles.grid_row]}>
+
+              <View style={[AppStyles.grid_third]}>
+                <Button
+                  text={"Save"}
+                  onPress={this._save} />
+              </View>
+            </View>
+
+            <View style={AppStyles.hr} />
+
+            <View style={[AppStyles.paddingHorizontal]}>
+              <Button
+                text={'Delete'}
+                style={'outlined'}
+                onPress={()=>alert('Just for looks')} />
+            </View>
+          </ScrollView>)
+
+        }
     },
 
   });
