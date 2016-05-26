@@ -79,6 +79,25 @@
     }
   });
 
+  var NavbarButtonRight = React.createClass({
+    /**
+      * On Icon Press
+      */
+    _onPress: function() { if(this.props.onPress) this.props.onPress(); },
+
+    render: function() {
+      return (
+        <TouchableOpacity onPress={this._onPress} activeOpacity={0.6}>
+          <Image
+            source={this.props.image}
+            style={AppStyles.navbarButtonRight} />
+        </TouchableOpacity>
+      );
+    }
+  });
+
+
+
   /**
    *  Main View w/ Sidebar
    */
@@ -135,6 +154,13 @@
           onPress={()=>self.setState({menuIsOpen:true})} />
       );
 
+      var rightButton = (
+        <NavbarButtonRight
+          image={require('./ReactApp/images/icons/plus_button.png')} 
+          onPress={()=>self.setState({menuIsOpen:true})} />
+      );
+
+
       if (route.index > 0) {
         leftButton = (
           <NavbarButton 
@@ -142,6 +168,8 @@
             onPress={self.refs.rootNavigator.pop} />
         );
       }
+
+
 
       // Done
       return (
@@ -151,7 +179,8 @@
             statusBar={{style: 'light-content', hidden: false}}
             style={AppStyles.navbar}
             tintColor={AppConfig.primaryColor}
-            leftButton={leftButton} />
+            leftButton={leftButton} 
+            rightButton={rightButton} />
 
           <Component navigator={navigator} route={route} {...route.passProps} />
         </View>

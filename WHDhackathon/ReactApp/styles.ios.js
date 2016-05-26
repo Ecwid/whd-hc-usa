@@ -254,6 +254,13 @@
       top: 9,
       tintColor: '#FFFFFF'
     },
+    navbarButtonRight: {
+      width: 26,
+      height: 26,
+      right: 15,
+      top: 9,
+      tintColor: '#FFFFFF'
+    },
     navbarTitle: {
       color: '#FFFFFF',
       bottom: 6,
