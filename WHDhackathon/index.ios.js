@@ -170,19 +170,19 @@
         );
       }
 
-      if (route.title === "New Product" || route.index === 10){
-        var rightButton = (
-          <NavbarButtonRight
-          image={require('./ReactApp/images/icons/camera.png')} 
-          onPress={()=>this.refs.rootNavigator.push({
-            title: 'ImageGallery',
-            component: ImageGallery,
-            index:100,
-            navigator: this.refs.rootNavigator,
-          })}
-          />
-        );
-      }       
+      // if (route.title === "New Product" || route.index === 10){
+      //   var rightButton = (
+      //     <NavbarButtonRight
+      //     image={require('./ReactApp/images/icons/camera.png')} 
+      //     onPress={()=>this.refs.rootNavigator.push({
+      //       title: 'ImageGallery',
+      //       component: ImageGallery,
+      //       index:100,
+      //       navigator: this.refs.rootNavigator,
+      //     })}
+      //     />
+      //   );
+      // }       
       
 
       if (route.index > 0) {
