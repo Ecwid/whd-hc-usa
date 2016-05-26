@@ -208,7 +208,7 @@
             contentContainerStyle={[AppStyles.containerCentered, styles.container]}>
             <View style={[AppStyles.paddingHorizontal]}>
 
-              {this.state.show_save_msg && this.state.form_values.First_name != '' ?
+              {this.state.show_save_msg && this.state.form_values.Name != '' ?
                 <View>
                   <View style={[AppStyles.msg]}>
                     <Text style={[AppStyles.baseText, AppStyles.msg_text]}>Saved</Text>
@@ -219,7 +219,7 @@
               : null}
 
               <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-                {this.state.form_values.name == '' ? "New Product" : "Update Product"}
+                {!this.state.form_values.Name ? "New Product" : "Update Product"}
               </Text>
               
               <View style={AppStyles.spacer_20} />
@@ -270,7 +270,7 @@
               : null}
 
               <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-                {this.state.form_values.name == '' ? "New Product" : "Update Product"}
+                {!this.state.form_values.Name ? "New Product" : "Update Product"}
               </Text>
               
               <View style={AppStyles.spacer_20} />
