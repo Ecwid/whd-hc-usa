@@ -57,16 +57,16 @@
         show_save_msg: false,
         form_fields: FormValidation.struct({
           Name: FormValidation.String,
-          Price: FormValidation.Number
+          Price: FormValidation.Number,
         }),
+        id: this.props.id,
         empty_form_values: {
           Name: '',
           Price: '',
         },
         form_values: {
           Name: this.props.name,
-          Price: this.props.price,
-          
+          Price: this.props.price,          
           
         },
         options: {
@@ -142,8 +142,9 @@
       if(value) {
         self.setState({form_values: value}, function(){
           self._saveData(function(result){
+            var store_id = 9415600;
 
-             URL = "https://app.ecwid.com/api/v3/" + 9415600 + "/products/" + 66555005 + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
+             URL = "https://app.ecwid.com/api/v3/" + store_id + "/products/" +  self.state.id + "?token=m3w1TEgx8Tk42zumzs7GJaAAgag6pKgf"
 
             fetch(URL, 
                   { method: "PUT", 

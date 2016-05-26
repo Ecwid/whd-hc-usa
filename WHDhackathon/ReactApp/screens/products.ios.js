@@ -96,7 +96,7 @@
     _renderRow: function(data) {
       return (
         <ProductRow name={data.name} price={data.price}
-          thumbnailUrl={data.thumbnailUrl}
+          thumbnailUrl={data.thumbnailUrl} id={data.id}
           onPress={()=>{
             this.props.navigator.push({
               title: 'Product Detail',
