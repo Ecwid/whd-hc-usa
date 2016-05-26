@@ -60,6 +60,7 @@
           Price: FormValidation.Number,
         }),
         id: this.props.id,
+        thumbnailUrl: this.props.thumbnailUrl,
         empty_form_values: {
           Name: '',
           Price: '',
@@ -199,6 +200,8 @@
             
             <View style={AppStyles.spacer_20} />
 
+            <Image source={{uri: this.state.thumbnailUrl}} style={[styles.productImage]}></Image>
+
             <Form
               ref="form"
               type={this.state.form_fields}
@@ -207,14 +210,8 @@
           </View>
 
           <View style={[AppStyles.grid_row]}>
-            <View style={[AppStyles.grid_twoThirds, AppStyles.paddingLeft]}>
-              <View style={AppStyles.spacer_15} />
-              <TouchableOpacity onPress={()=>{this._deleteData()}}>
-                <Text style={[AppStyles.baseText, AppStyles.p, AppStyles.link]}>Clear Info</Text>
-              </TouchableOpacity>
-            </View>
 
-            <View style={[AppStyles.grid_third, AppStyles.paddingRight]}>
+            <View style={[AppStyles.grid_third]}>
               <Button
                 text={"Save"}
                 onPress={this._save} />
@@ -243,8 +240,15 @@
       paddingTop: 15,
       paddingBottom: 20,
       justifyContent: 'center',
-      alignItems: 'stretch',
+      alignItems: 'center',
     },
+    productImage: {
+      height: 200,
+      width: 200,
+      justifyContent: 'center',
+      alignItems: 'center',
+
+    }
   });
 
 /* ==============================
