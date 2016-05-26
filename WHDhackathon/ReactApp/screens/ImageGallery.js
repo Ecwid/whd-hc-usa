@@ -21,7 +21,7 @@ class ImageGallery extends Component {
 
   render() {
   	return (
-  		<CameraRollPicker callback={this.getSelectedImages} />
+  		<CameraRollPicker callback={this.getSelectedImages} maximum={1}/>
   	)
   }
 }
@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
   },
 });
 
-exports.title = 'Camera Roll Picker';
+exports.title = 'Image Gallery';
 exports.description = 'Example of simple Camera Roll Picker';
 module.exports = ImageGallery;
