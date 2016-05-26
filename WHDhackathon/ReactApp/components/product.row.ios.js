@@ -63,6 +63,9 @@
       } else {
         return (
           <TouchableOpacity style={[styles.productRow]} onPress={self._onPress} activeOpacity={0.7}>
+           <Image source={require('../images/no-product.png')} style={[styles.productImage]}></Image>
+
+
             <View style={styles.rightContainer}>
               <Text style={[AppStyles.baseText, styles.productTitle]}>{self.props.name.toUpperCase()}</Text>
               <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{"$" + self.props.price.toFixed(2)}</Text>
