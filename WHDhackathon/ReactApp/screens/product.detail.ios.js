@@ -44,11 +44,11 @@
         
           <View style={[styles.productRow]}>
 
-          <Image source={{uri: this.props.image}} style={[styles.productImage]}></Image>
+          <Image source={{uri: this.props.thumbnailUrl}} style={[styles.productImage]}></Image>
           
           
             <View style={styles.rightContainer}>
-              <Text style={[AppStyles.baseText, styles.productTitle]}>{this.props.title.toUpperCase()}</Text>
+              <Text style={[AppStyles.baseText, styles.productTitle]}>{this.props.name.toUpperCase()}</Text>
               <Text numberOfLines={1} style={[AppStyles.baseText, styles.productPrice]}>{this.props.price}</Text>
             </View>
             
